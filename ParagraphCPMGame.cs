@@ -39,7 +39,7 @@ namespace SpeedTyper
             for (; ; )
             {
                 // use the array indexes for input selection, saves us a switch
-                char key = Console.ReadKey().KeyChar;
+                char key = Console.ReadKey(true).KeyChar;
                 if (int.TryParse(key.ToString(), out int selection))
                 {
                     if (selection < fileNames.Length)
