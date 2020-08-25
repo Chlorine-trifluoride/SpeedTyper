@@ -6,8 +6,8 @@ namespace SpeedTyper
     {
         static void Main(string[] args)
         {
-            Game1 game1 = new Game1();
-            game1.Run();
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Run();
 
             // Reset console colors
             Console.ForegroundColor = ConsoleColor.White;

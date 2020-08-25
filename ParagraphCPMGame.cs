@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace SpeedTyper
 {
-    class Game1
+    [Description("Choose a text to write. You get points for every correct character divided by time.")]
+    class ParagraphCPMGame : IGameMode
     {
         private TextLoader textLoader;
 
@@ -16,7 +18,7 @@ namespace SpeedTyper
         private uint numCorrect = 0;
         private uint numIncorrect = 0;
 
-        public Game1()
+        public ParagraphCPMGame()
         {
             textLoader = new TextLoader();
             LoadText();
