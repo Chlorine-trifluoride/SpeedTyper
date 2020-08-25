@@ -7,7 +7,7 @@ namespace SpeedTyper
 {
     class TextLoader
     {
-        private const string textPath = @"Media/test_short.txt";
+        private const string textPath = @"Media/test.txt";
 
         public string GetRandomText()
         {

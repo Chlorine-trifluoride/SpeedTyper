@@ -23,6 +23,7 @@ namespace SpeedTyper
                 this.width = Console.WindowWidth;
                 this.height = Console.WindowHeight;
 
+                Console.Clear();
                 Render();
             }
         }
@@ -44,8 +45,6 @@ namespace SpeedTyper
 
         private void RenderGame()
         {
-            Console.Clear();
-
             RenderScore();
             Console.WriteLine(); // Empty Line
 
@@ -53,8 +52,19 @@ namespace SpeedTyper
             Console.WriteLine(); // Empty line
         }
 
+        private void SetCursorPositionSafe(int x, int y)
+        {
+            if (x >= 0 && x < Console.WindowWidth &&
+                y >= 0 && x < Console.WindowHeight)
+            {
+                Console.SetCursorPosition(x, y);
+            }
+        }
+
         private void RenderScore()
         {
+            SetCursorPositionSafe(0, 0);
+
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine($"Score: {Score.Points}");
