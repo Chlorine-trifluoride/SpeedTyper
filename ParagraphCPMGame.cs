@@ -21,12 +21,36 @@ namespace SpeedTyper
         public ParagraphCPMGame()
         {
             textLoader = new TextLoader();
-            LoadText();
         }
 
-        private void LoadText()
+        private string GetFileNameFromMenu()
         {
-            text = textLoader.GetRandomText();
+            string[] fileNames = textLoader.GetFileNames();
+
+            Console.Clear();
+            Console.WriteLine("Select Text File:");
+            Console.WriteLine("------------------");
+
+            for (int i = 0; i < fileNames.Length; i++)
+            {
+                Console.WriteLine($"{i}) {fileNames[i]}");
+            }
+
+            for (; ; )
+            {
+                // use the array indexes for input selection, saves us a switch
+                char key = Console.ReadKey().KeyChar;
+                if (int.TryParse(key.ToString(), out int selection))
+                {
+                    if (selection < fileNames.Length)
+                        return fileNames[selection];
+                }
+            }
+        }
+
+        private void LoadText(string fileName)
+        {
+            text = textLoader.GetTextFromFile(fileName);
             words = text.Split(' ');
 
             typerChars = new TyperChar[text.Length];
@@ -39,6 +63,12 @@ namespace SpeedTyper
 
         public void Run()
         {
+            string fileName = GetFileNameFromMenu();
+            LoadText(fileName);
+
+            // Clear console of menus
+            Console.Clear();
+
             // Render all the text again
             Renderer render = new Renderer();
             render.Render(typerChars);
@@ -74,14 +104,6 @@ namespace SpeedTyper
                 // Render all the text again
                 render.Render(typerChars);
             }
-        }
-
-        private bool ValidateInput(string word, string input)
-        {
-            if (word == input)
-                return true;
-
-            return false;
         }
     }
 }

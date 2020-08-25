@@ -7,18 +7,24 @@ namespace SpeedTyper
 {
     class TextLoader
     {
-        private const string textPath = @"Media/test.txt";
+        private const string textPath = @"Media/";
 
-        public string GetRandomText()
+        public string GetTextFromFile(string fileName)
         {
             string result = "lorem ipsum";
 
-            using (StreamReader reader = new StreamReader(textPath))
+            using (StreamReader reader = new StreamReader($"{fileName}"))
             {
                 result = reader.ReadToEnd();
             }
 
             return result;
+        }
+
+        public string[] GetFileNames()
+        {
+            string[] files = Directory.GetFiles(textPath, "*.txt");
+            return files;
         }
     }
 }
