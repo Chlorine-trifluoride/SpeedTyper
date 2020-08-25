@@ -6,7 +6,8 @@ namespace SpeedTyper
 {
     static class Score
     {
-        public static uint Points { get; set; } = 0;
+        public static float Points { get; set; } = 0;
+        public static uint UPoints => (uint)Points;
 
         private static DateTime startTime;
         private static uint elapsedSeconds => (uint)(DateTime.Now - startTime).TotalSeconds;
@@ -19,7 +20,7 @@ namespace SpeedTyper
         public static void CalculatePoints(uint numCorrectLetters)
         {
             if (elapsedSeconds != 0) // avoid division by 0
-                 Points = numCorrectLetters / elapsedSeconds * 60; // Get letters per minute
+                 Points = (float)numCorrectLetters / elapsedSeconds * 60.0f; // Get letters per minute
         }
     }
 }

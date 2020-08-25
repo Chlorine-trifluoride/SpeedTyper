@@ -67,7 +67,7 @@ namespace SpeedTyper
 
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine($"Score: {Score.Points}");
+            Console.WriteLine($"Score: {Score.UPoints} CPM");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
         }
