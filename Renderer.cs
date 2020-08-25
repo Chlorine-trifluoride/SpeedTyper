@@ -31,17 +31,35 @@ namespace SpeedTyper
         {
             typerChars = chars;
 
-            Console.Clear();
-            RenderTyperChars();
+            RenderGame();
         }
 
         public void Render()
         {
             if (!(typerChars is null))
             {
-                Console.Clear();
-                RenderTyperChars();
+                RenderGame();
             }
+        }
+
+        private void RenderGame()
+        {
+            Console.Clear();
+
+            RenderScore();
+            Console.WriteLine(); // Empty Line
+
+            RenderTyperChars();
+            Console.WriteLine(); // Empty line
+        }
+
+        private void RenderScore()
+        {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine($"Score: {Score.Points}");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         private void RenderTyperChars()
@@ -69,8 +87,6 @@ namespace SpeedTyper
 
                 Console.Write(typerChars[i].Character);
             }
-
-            Console.WriteLine(); // Empty line
         }
 
         private void SetRenderColor(ConsoleColor color = ConsoleColor.White)

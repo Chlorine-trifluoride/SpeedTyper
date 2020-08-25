@@ -13,6 +13,9 @@ namespace SpeedTyper
 
         private TyperChar[] typerChars;
 
+        private uint numCorrect = 0;
+        private uint numIncorrect = 0;
+
         public Game1()
         {
             textLoader = new TextLoader();
@@ -38,6 +41,9 @@ namespace SpeedTyper
             Renderer render = new Renderer();
             render.Render(typerChars);
 
+            // Start the score time
+            Score.StartTimer();
+
             for (int index = 0; index < typerChars.Length; index++)
             {
                 while (!Console.KeyAvailable)
@@ -49,29 +55,23 @@ namespace SpeedTyper
                 // Console key is now available
                 char inputChar = Console.ReadKey(true).KeyChar;
                 if (inputChar == typerChars[index].Character)
+                {
                     typerChars[index].CorrectStatus = CHAR_CORRECT_STATUS.CORRECT;
+                    numCorrect++;
+                }
+
                 else
+                {
                     typerChars[index].CorrectStatus = CHAR_CORRECT_STATUS.INCORRECT;
+                    numIncorrect++;
+                }
+
+                // Calculate the score
+                Score.CalculatePoints(numCorrect);
 
                 // Render all the text again
                 render.Render(typerChars);
             }
-
-            //for (int index = 0; index < words.Length; index++)
-            //{
-            //    string word = words[index];
-            //    Console.WriteLine(word);
-
-            //    string input = Console.ReadLine();
-
-            //    if (ValidateInput(word, input))
-            //        Console.WriteLine("Correct");
-            //    else
-            //        Console.WriteLine("Incorrect");
-
-            //    // do points
-            //    index++;
-            //}
         }
 
         private bool ValidateInput(string word, string input)

@@ -8,6 +8,9 @@ namespace SpeedTyper
         {
             Game1 game1 = new Game1();
             game1.Run();
+
+            // Reset console colors
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
